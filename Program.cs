@@ -1,6 +1,10 @@
 ﻿using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
+// Input files must be saved from Practiscore HTML results pages such as:
+// https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-carryoptics
+// https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-pcc
+
 namespace MatchTool
 {
    internal class Program
