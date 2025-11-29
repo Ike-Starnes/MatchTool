@@ -1,0 +1,120 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\MatchTool\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|d:\\projects\\matchtool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|d:\\projects\\matchtool\\prizepool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|solutionrelative:prizepool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|d:\\projects\\matchtool\\matchinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|solutionrelative:matchinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|d:\\projects\\matchtool\\matchresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|solutionrelative:matchresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|d:\\projects\\matchtool\\divclasspool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|solutionrelative:divclasspool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|d:\\projects\\matchtool\\matchtool.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{5CFFB788-835F-4883-85B5-6E285F86F3CF}|MatchTool.csproj|solutionrelative:matchtool.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DivClassPool.cs",
+              "DocumentMoniker": "D:\\Projects\\MatchTool\\DivClassPool.cs",
+              "RelativeDocumentMoniker": "DivClassPool.cs",
+              "ToolTip": "D:\\Projects\\MatchTool\\DivClassPool.cs",
+              "RelativeToolTip": "DivClassPool.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T23:32:52.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PrizePool.cs",
+              "DocumentMoniker": "D:\\Projects\\MatchTool\\PrizePool.cs",
+              "RelativeDocumentMoniker": "PrizePool.cs",
+              "ToolTip": "D:\\Projects\\MatchTool\\PrizePool.cs",
+              "RelativeToolTip": "PrizePool.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAApwEYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T23:17:24.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MatchTool",
+              "DocumentMoniker": "D:\\Projects\\MatchTool\\MatchTool.csproj",
+              "RelativeDocumentMoniker": "MatchTool.csproj",
+              "ToolTip": "D:\\Projects\\MatchTool\\MatchTool.csproj",
+              "RelativeToolTip": "MatchTool.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-28T22:51:26.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MatchResults.cs",
+              "DocumentMoniker": "D:\\Projects\\MatchTool\\MatchResults.cs",
+              "RelativeDocumentMoniker": "MatchResults.cs",
+              "ToolTip": "D:\\Projects\\MatchTool\\MatchResults.cs",
+              "RelativeToolTip": "MatchResults.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAqwCkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:40:55.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MatchInfo.cs",
+              "DocumentMoniker": "D:\\Projects\\MatchTool\\MatchInfo.cs",
+              "RelativeDocumentMoniker": "MatchInfo.cs",
+              "ToolTip": "D:\\Projects\\MatchTool\\MatchInfo.cs",
+              "RelativeToolTip": "MatchInfo.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T15:05:19.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Projects\\MatchTool\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Projects\\MatchTool\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwDIAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T15:03:15.019Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

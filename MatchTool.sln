@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchTool", "MatchTool.csproj", "{5CFFB788-835F-4883-85B5-6E285F86F3CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CFFB788-835F-4883-85B5-6E285F86F3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CFFB788-835F-4883-85B5-6E285F86F3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CFFB788-835F-4883-85B5-6E285F86F3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CFFB788-835F-4883-85B5-6E285F86F3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4C9BFFB-46CD-4D1D-9250-7C79DFBE9A61}
+	EndGlobalSection
+EndGlobal
