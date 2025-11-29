@@ -16,6 +16,7 @@ namespace MatchTool
       // col 2: USPSA #
       // col 3: Classification
       private HtmlNode _results;
+      public HtmlNode Results { get => _results; }
 
       private Divisions _division;
       public Divisions Division { get => _division; set => _division = value; }
@@ -30,7 +31,7 @@ namespace MatchTool
       {
          get
          {
-            HtmlNodeCollection resultsRows = _results.SelectNodes(".//tr");
+            HtmlNodeCollection resultsRows = Results.SelectNodes(".//tr");
             return resultsRows.Count - 2; // don't count division head row and header row
          }
       }
@@ -49,10 +50,16 @@ namespace MatchTool
          return ret;
       }
 
+      // table row
+      // col 0: Placement
+      // col 1: Name
+      // col 2: USPSA #
+      // col 3: Classification
+
       public int GetClassificationCount(Classifications classification)
       {
          int count = 0;
-         HtmlNodeCollection resultsRows = _results.SelectNodes(".//tr");
+         HtmlNodeCollection resultsRows = Results.SelectNodes(".//tr");
          for (int i = 2; i < TotalShooters + 2; i++)
          {
             HtmlNodeCollection cols = resultsRows[i].SelectNodes(".//td");
@@ -63,5 +70,33 @@ namespace MatchTool
          }
          return count;
       }
+
+      public List<string> GetWinners(Classifications classification, int numberOfWinners)
+      {
+         HtmlNodeCollection resultsRows = Results.SelectNodes(".//tr");
+
+         if (numberOfWinners > TotalShooters) numberOfWinners = TotalShooters;
+
+         List<string> winners = new List<string>();
+
+         for (int i = 2; i < TotalShooters + 2; i++)
+         {
+            HtmlNodeCollection cols = resultsRows[i].SelectNodes(".//td");
+
+            if(classification == Classifications.GM)
+            {
+               winners.Add(cols[1].InnerText);
+            }
+            else
+            {
+               if (cols[3].InnerText.ToLower() == classification.ToString().ToLower())
+                  winners.Add(cols[1].InnerText);
+            }
+            if (winners.Count == numberOfWinners) break;
+         }
+
+         return winners;
+      }
+
    }
 }

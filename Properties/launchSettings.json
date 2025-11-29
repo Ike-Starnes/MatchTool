@@ -2,7 +2,7 @@
   "profiles": {
     "MatchTool": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Temp\\CarolinaClassic $9555.00 33%"
+      "commandLineArgs": "C:\\Temp\\CarolinaClassic $9555.00 75%"
     }
   }
 }

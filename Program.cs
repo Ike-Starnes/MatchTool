@@ -29,17 +29,17 @@ namespace MatchTool
 
          Console.WriteLine(Environment.NewLine);
 
-         Console.Write("Division".PadRight(16));
-         Console.Write("Prize Pool".PadRight(16));
-         foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
-            Console.Write(classification.ToString().PadRight(16));
-         Console.Write("Totals".PadRight(16));
-         Console.Write(Environment.NewLine);
-
-         Console.WriteLine($"---------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-
          foreach (MatchResults results in matchInfo.Results)
          {
+            Console.Write("Division".PadRight(16));
+            Console.Write("Prize Pool".PadRight(16));
+            foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
+               Console.Write(classification.ToString().PadRight(16));
+            Console.Write("Totals".PadRight(16));
+            Console.Write(Environment.NewLine);
+
+            Console.WriteLine($"---------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
             double percentage = (double)results.TotalShooters / (double)matchInfo.TotalShooters;
             double poolMoney = prizeMoney * percentage;
 
@@ -51,19 +51,20 @@ namespace MatchTool
             foreach (DivClassPool divClassPool in prizePool.Pools)
             {
                List<double> payouts = divClassPool.CalculatePayouts(matchInfo.TopPercentToPay);
+               List<string> winners = results.GetWinners(divClassPool.Classification, divClassPool.Count);
 
-               if(divClassPool.PrizeMoney > 0.0)
+               if (divClassPool.PrizeMoney > 0.0)
                {
                   string classification = divClassPool.Classification.ToString();
-                  if (classification == "GM") classification = "HOA";
-                  Console.WriteLine($"{divClassPool.Division} {classification} (Paying {payouts.Count} of {divClassPool.Count})");
 
-                  double totalPayouts = 0.0;
+                  string displayClassification = classification;
+                  if (classification == "GM") displayClassification = "HOA";
+                  Console.WriteLine($"{divClassPool.Division} {displayClassification} (Paying {payouts.Count} of {divClassPool.Count})");
                   for (int i = 0; i < payouts.Count; i++)
                   {
-                     Console.WriteLine($"${payouts[i]:F2}");
-                     totalPayouts += payouts[i];
+                     Console.WriteLine($"{i+1}\t{winners[i],-30}\t${payouts[i]:F2}");
                   }
+                  Console.Write(Environment.NewLine);
                }
             }
          }
