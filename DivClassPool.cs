@@ -34,9 +34,9 @@ namespace MatchTool
       }
 
       // Method to calculate actual payouts based on total prize pool
-      public List<double> CalculatePayouts(double topPercentToPay = 0.1)
+      public List<double> CalculatePayouts(int topPercentToPay = 10)
       {
-         int winners = (int)Math.Ceiling(this.Count * topPercentToPay);
+         int winners = (int)Math.Ceiling(this.Count * ((double)topPercentToPay / 100.0));
          var payoutPercentages = GeneratePayoutPercentages(winners);
 
          List<double> payouts = payoutPercentages.Select(p => Math.Round(p * this.PrizeMoney, 2)).ToList();

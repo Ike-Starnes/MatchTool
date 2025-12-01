@@ -1,56 +1,83 @@
-﻿using System.Xml.Linq;
+﻿using CommandLine;
+using HtmlAgilityPack;
+using System.Runtime.InteropServices;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // Input files must be saved from Practiscore HTML results pages such as:
 // https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-carryoptics
 // https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-pcc
 
+// Example command line: 
+// MatchTool.exe -d C:\Temp\CarolinaClassic -p 9555.00 -s 75 -r C:\Temp\CarolinaClassic\report.txt
+
 namespace MatchTool
 {
    internal class Program
    {
-      static void Main(string[] args)
+      static void RunOptions(AppOptions opts)
       {
-         double topPercentToPay = 0.1;
+         //handle options
+      }
+      static void HandleParseError(IEnumerable<CommandLine.Error> errs)
+      {
+         Usage();
+      }
 
-         double prizeMoney = double.Parse(args[1].Replace("$", ""));
-         double surrenderPercent = double.Parse(args[2].Replace("%", "")) / 100.0;
-         MatchInfo matchInfo = new MatchInfo(args[0], prizeMoney, surrenderPercent, topPercentToPay);
+      private static void Usage()
+      {
+         //Console.WriteLine("For command line help:");
+         //Console.WriteLine("   MatchTool.exe --help");
+      }
 
-         Console.WriteLine($"=========================================================");
-         Console.WriteLine($"Match Name:\t{matchInfo.Name}");
-         Console.WriteLine($"Match Date:\t{matchInfo.Date}");
-         Console.WriteLine($"Club ID:\t{matchInfo.Club}");
-         Console.WriteLine($"Total Shooters:\t{matchInfo.TotalShooters}");
-         Console.WriteLine($"Prize Money:\t${matchInfo.PrizeMoney:F2}");
-         Console.WriteLine($"Surrender %:\t{matchInfo.SurrenderPercent * 100}%");
-         Console.WriteLine($"Top % to pay:\t{matchInfo.TopPercentToPay * 100}%");
-         Console.WriteLine($"=========================================================");
+      static int Main(string[] args)
+      {
+         ParserResult<AppOptions> parseResult = Parser.Default.ParseArguments<AppOptions>(args)
+           .WithParsed(RunOptions)
+           .WithNotParsed(HandleParseError);
 
-         Console.WriteLine(Environment.NewLine);
+         if (parseResult.Errors.Any()) { return 1; }
+         AppOptions appOptions = parseResult.Value;
+         MatchOptions matchOptions = new MatchOptions(appOptions);
+
+         MatchInfo matchInfo = new MatchInfo(matchOptions);
+         Reporter reporter = new Reporter(appOptions.ReportFile);
+
+         reporter.Report($"=========================================================");
+         reporter.Report($"Match Name:\t{matchInfo.Name}");
+         reporter.Report($"Match Date:\t{matchInfo.Date}");
+         reporter.Report($"Club ID:\t{matchInfo.Club}");
+         reporter.Report($"Total Shooters:\t{matchInfo.TotalShooters}");
+         reporter.Report($"Prize Money:\t${matchInfo.Options.PrizeMoney:F2}");
+         reporter.Report($"Surrender %:\t{matchInfo.Options.SurrenderPercent}%");
+         reporter.Report($"Top % to pay:\t{matchInfo.Options.TopPercentToPay}%");
+         reporter.Report($"=========================================================");
+
+         reporter.Report(Environment.NewLine);
 
          foreach (MatchResults results in matchInfo.Results)
          {
-            Console.Write("Division".PadRight(16));
-            Console.Write("Prize Pool".PadRight(16));
+            string report = "Division".PadRight(16);
+            report += "Prize Pool".PadRight(16);
             foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
-               Console.Write(classification.ToString().PadRight(16));
-            Console.Write("Totals".PadRight(16));
-            Console.Write(Environment.NewLine);
+               report += classification.ToString().PadRight(16);
+            report += "Totals".PadRight(16);
+            report += Environment.NewLine;
+            reporter.Report(report);
 
-            Console.WriteLine($"---------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            reporter.Report($"---------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
             double percentage = (double)results.TotalShooters / (double)matchInfo.TotalShooters;
-            double poolMoney = prizeMoney * percentage;
+            double poolMoney = matchInfo.Options.PrizeMoney * percentage;
 
-            PrizePool prizePool = new PrizePool(poolMoney, surrenderPercent, results);
-            Console.WriteLine(prizePool.ToString());
+            PrizePool prizePool = new PrizePool(poolMoney, matchInfo.Options.SurrenderPercent, results);
+            reporter.Report(prizePool.ToString());
 
-            Console.WriteLine($"*********************************************************************");
+            reporter.Report($"*********************************************************************************************************************************************************************");
 
             foreach (DivClassPool divClassPool in prizePool.Pools)
             {
-               List<double> payouts = divClassPool.CalculatePayouts(matchInfo.TopPercentToPay);
+               List<double> payouts = divClassPool.CalculatePayouts(matchInfo.Options.TopPercentToPay);
                List<string> winners = results.GetWinners(divClassPool.Classification, divClassPool.Count);
 
                if (divClassPool.PrizeMoney > 0.0)
@@ -59,15 +86,17 @@ namespace MatchTool
 
                   string displayClassification = classification;
                   if (classification == "GM") displayClassification = "HOA";
-                  Console.WriteLine($"{divClassPool.Division} {displayClassification} (Paying {payouts.Count} of {divClassPool.Count})");
+                  reporter.Report($"{divClassPool.Division} {displayClassification} (Paying {payouts.Count} of {divClassPool.Count})");
                   for (int i = 0; i < payouts.Count; i++)
                   {
-                     Console.WriteLine($"{i+1}\t{winners[i],-30}\t${payouts[i]:F2}");
+                     reporter.Report($"{i+1}\t{winners[i],-30}\t${payouts[i]:F2}");
                   }
-                  Console.Write(Environment.NewLine);
+                  reporter.Report(string.Empty);
                }
             }
          }
+         reporter.Display();
+         return 0;
       }
    }
 }

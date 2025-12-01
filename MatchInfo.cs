@@ -35,8 +35,9 @@ namespace MatchTool
 
    internal class MatchInfo
    {
-      private string _dataFolder;
-      public string DataFolder { get => _dataFolder; }
+      private MatchOptions _options;
+      internal MatchOptions Options { get => _options; set => _options = value; }
+
 
       private string _name;
       public string Name { get => _name; }
@@ -51,31 +52,18 @@ namespace MatchTool
 
       private List<MatchResults> _results;
 
-      private double _prizeMoney;
-      public double PrizeMoney { get => _prizeMoney; }
-
-      private double _surrenderPercent;
-      public double SurrenderPercent { get => _surrenderPercent; }
-
-      private double _topPercentToPay;
-      public double TopPercentToPay { get => _topPercentToPay; }
-
 
       private int _totalShooters;
       public int TotalShooters { get => _totalShooters; set => _totalShooters = value; }
 
-      public MatchInfo(string dataFolder, double prizeMoney, double surrenderPercent, double topPercentToPay)
+      public MatchInfo(MatchOptions options)
       {
          _name = _date = _club = String.Empty;
 
-         if (!Directory.Exists(dataFolder)) throw new DirectoryNotFoundException(dataFolder);
-         _dataFolder = dataFolder;
+         if (!Directory.Exists(options.DataFolder)) throw new DirectoryNotFoundException(options.DataFolder);
+         _options = options;
 
-         _prizeMoney = prizeMoney;
-         _surrenderPercent = surrenderPercent;
-         _topPercentToPay = topPercentToPay;
-
-         string matchFile = Path.Combine(DataFolder, $"Main.html");
+         string matchFile = Path.Combine(options.DataFolder, $"Main.html");
          if (!File.Exists(matchFile)) throw new FileNotFoundException(matchFile);
 
          HtmlDocument doc = new HtmlDocument();
@@ -115,7 +103,7 @@ namespace MatchTool
       }
       private MatchResults GetResults(Divisions division)
       {
-         string resultsFile = Path.Combine(DataFolder, $"{division}.html");
+         string resultsFile = Path.Combine(Options.DataFolder, $"{division}.html");
          if (!File.Exists(resultsFile))
          {
             string resultsFile2 = resultsFile.Replace(" ", "");

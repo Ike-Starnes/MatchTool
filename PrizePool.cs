@@ -11,7 +11,7 @@ namespace MatchTool
       private double _total;
       public double Total { get => _total; }
 
-      private double _surrender;
+      private int _surrender;
 
       private MatchResults _results;
 
@@ -29,7 +29,7 @@ namespace MatchTool
          return ret;
       }
 
-      public PrizePool(double totalMoney, double surrender, MatchResults results)
+      public PrizePool(double totalMoney, int surrender, MatchResults results)
       {
          _total = totalMoney;
          _surrender = surrender;
@@ -37,7 +37,7 @@ namespace MatchTool
 
          _pools = new List<DivClassPool>();
 
-         DivClassPool gmPool = null;
+         DivClassPool? gmPool = null;
 
          double classMoneySum = 0.0;
          int classSum = 0;
@@ -61,7 +61,7 @@ namespace MatchTool
                if (pool.Classification != Classifications.GM)
                {
                   pool.PrizeMoney = _total * ((double)pool.Count / (double)_results.TotalShooters); // without accounting for surrender amount
-                  double surrenderAmount = pool.PrizeMoney * _surrender;
+                  double surrenderAmount = pool.PrizeMoney * ((double)_surrender/100.0);
                   pool.PrizeMoney -= surrenderAmount;
                }
             }
@@ -79,7 +79,7 @@ namespace MatchTool
          // line #1
          string division = _results.Division.ToString().PadRight(16);
          ret += division;
-         ret += $"${_total.ToString("F2")}".PadRight(16);
+         ret += $"${_total:F2}".PadRight(16);
 
          foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
          {
@@ -91,7 +91,7 @@ namespace MatchTool
          ret += "Class Pools".PadLeft(16).PadRight(32);
          foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
          {
-            string classPrize = $"${GetClassificationPrize(classification).ToString("F2")}".PadRight(16);
+            string classPrize = $"${GetClassificationPrize(classification):F2}".PadRight(16);
             ret += classPrize;
          }
 
