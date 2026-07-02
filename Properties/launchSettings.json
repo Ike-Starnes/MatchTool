@@ -2,7 +2,7 @@
   "profiles": {
     "MatchTool": {
       "commandName": "Project",
-      "commandLineArgs": "-d C:\\Temp\\CarolinaClassic -p 9555.00 -s 75 -r C:\\Temp\\CarolinaClassic\\report.txt"
+      "commandLineArgs": "-d D:\\Projects\\MatchTool\\Data -p 5000.00 -s 75 -r D:\\Projects\\MatchTool\\Data\\report.txt"
     }
   }
 }

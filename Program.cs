@@ -45,8 +45,6 @@ namespace MatchTool
 
          reporter.Report($"=========================================================");
          reporter.Report($"Match Name:\t{matchInfo.Name}");
-         reporter.Report($"Match Date:\t{matchInfo.Date}");
-         reporter.Report($"Club ID:\t{matchInfo.Club}");
          reporter.Report($"Total Shooters:\t{matchInfo.TotalShooters}");
          reporter.Report($"Prize Money:\t${matchInfo.Options.PrizeMoney:F2}");
          reporter.Report($"Surrender %:\t{matchInfo.Options.SurrenderPercent}%");

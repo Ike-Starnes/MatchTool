@@ -42,12 +42,6 @@ namespace MatchTool
       private string _name;
       public string Name { get => _name; }
 
-      private string _date;
-      public string Date { get => _date; }
-
-      private string _club;
-      public string Club { get => _club; }
-
       public List<MatchResults> Results { get => _results; }
 
       private List<MatchResults> _results;
@@ -58,7 +52,7 @@ namespace MatchTool
 
       public MatchInfo(MatchOptions options)
       {
-         _name = _date = _club = String.Empty;
+         _name = String.Empty;
 
          if (!Directory.Exists(options.DataFolder)) throw new DirectoryNotFoundException(options.DataFolder);
          _options = options;
@@ -70,15 +64,8 @@ namespace MatchTool
          string html = File.ReadAllText(matchFile);
          doc.LoadHtml(html);
 
-         HtmlNode tableNode = doc.DocumentNode.SelectNodes("//table")[0];
-         HtmlNodeCollection tableRows = tableNode.SelectNodes(".//tr");
-         foreach (HtmlNode tableRow in tableRows)
-         {
-            HtmlNodeCollection tableColumns = tableRow.SelectNodes(".//td");
-            if (tableColumns[0].InnerText.Contains("Match Name")) _name = tableColumns[1].InnerText;
-            if (tableColumns[0].InnerText.Contains("Match Date")) _date = tableColumns[1].InnerText;
-            if (tableColumns[0].InnerText.Contains("Club ID")) _club = tableColumns[1].InnerText;
-         }
+         HtmlNode matchNode = doc.DocumentNode.SelectSingleNode("//h3");
+         _name = matchNode.InnerText.Trim();
 
          _totalShooters = 0;
 
