@@ -78,7 +78,8 @@ namespace MatchTool
 
             foreach (DivClassPool divClassPool in prizePool.Pools)
             {
-               List<double> payouts = divClassPool.CalculatePayouts(matchInfo.Options.TopPercentToPay);
+               //List<double> payouts = divClassPool.CalculatePayouts(matchInfo.Options.TopPercentToPay);
+               List<double> payouts = divClassPool.GenerateSmoothPayouts(divClassPool.Count, matchInfo.Options.TopPercentToPay);
                List<string> winners = results.GetWinners(divClassPool.Classification, divClassPool.Count);
 
                if (divClassPool.PrizeMoney > 0.0)
