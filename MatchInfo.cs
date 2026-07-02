@@ -55,6 +55,14 @@ namespace MatchTool
       {
          _name = String.Empty;
 
+         // To get the files, go to Practiscore.com, find the match results, then scroll down to "Old style results"
+         // From that page, save as HTML all the overall results pages "Combined", "Carry Optics", ...
+         // Ex:
+         // https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-combined
+         // https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-carryoptics
+         // https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-limited
+         // ...
+
          if (!Directory.Exists(options.DataFolder)) throw new DirectoryNotFoundException(options.DataFolder);
          _options = options;
 
