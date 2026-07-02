@@ -19,7 +19,7 @@ namespace MatchTool
       SingleStack,
       PCC,
       Production,
-      Revolover,
+      Revolver,
    };
 
    public enum Classifications
@@ -31,6 +31,7 @@ namespace MatchTool
       C,
       D,
       U,
+      HOA,
    };
 
    internal class MatchInfo
@@ -82,7 +83,11 @@ namespace MatchTool
             try
             {
                MatchResults matchResults = GetResults(division);
-               _results.Add(matchResults);
+               if (matchResults.TotalShooters >= _options.MinimumShooters)
+                  _results.Add(matchResults);
+               else
+                  Console.WriteLine($"Excluding {division} from results.");
+
                _totalShooters += matchResults.TotalShooters;
             }
             catch (FileNotFoundException /*e*/) { System.Diagnostics.Debug.WriteLine($"No results file for division: {division}"); }

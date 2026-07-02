@@ -17,8 +17,10 @@ namespace MatchTool
    {
       static void RunOptions(AppOptions opts)
       {
-         //handle options
+         if (opts.HOAOnly)
+            opts.SurrenderPercent = 0;
       }
+
       static void HandleParseError(IEnumerable<CommandLine.Error> errs)
       {
          Usage();
@@ -43,13 +45,14 @@ namespace MatchTool
          MatchInfo matchInfo = new MatchInfo(matchOptions);
          Reporter reporter = new Reporter(appOptions.ReportFile);
 
-         reporter.Report($"=========================================================");
-         reporter.Report($"Match Name:\t{matchInfo.Name}");
-         reporter.Report($"Total Shooters:\t{matchInfo.TotalShooters}");
-         reporter.Report($"Prize Money:\t${matchInfo.Options.PrizeMoney:F2}");
-         reporter.Report($"Surrender %:\t{matchInfo.Options.SurrenderPercent}%");
-         reporter.Report($"Top % to pay:\t{matchInfo.Options.TopPercentToPay}%");
-         reporter.Report($"=========================================================");
+         reporter.Report($"==================================================================================================================");
+         reporter.Report($"Match Name:\t\t{matchInfo.Name}");
+         reporter.Report($"Total Shooters:\t\t{matchInfo.TotalShooters}");
+         reporter.Report($"Prize Money:\t\t${matchInfo.Options.PrizeMoney:F2}");
+         reporter.Report($"Surrender %:\t\t{matchInfo.Options.SurrenderPercent}%");
+         reporter.Report($"Top % to pay:\t\t{matchInfo.Options.TopPercentToPay}%");
+         reporter.Report($"Required min shooters:\t{matchInfo.Options.MinimumShooters}");
+         reporter.Report($"==================================================================================================================");
 
          reporter.Report(Environment.NewLine);
 
@@ -68,7 +71,7 @@ namespace MatchTool
             double percentage = (double)results.TotalShooters / (double)matchInfo.TotalShooters;
             double poolMoney = matchInfo.Options.PrizeMoney * percentage;
 
-            PrizePool prizePool = new PrizePool(poolMoney, matchInfo.Options.SurrenderPercent, results);
+            PrizePool prizePool = new PrizePool(poolMoney, results, matchOptions);
             reporter.Report(prizePool.ToString());
 
             reporter.Report($"*********************************************************************************************************************************************************************");

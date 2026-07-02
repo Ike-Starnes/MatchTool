@@ -13,6 +13,8 @@ namespace MatchTool
       private int _topPercentToPay;
       private double _prizeMoney;
       private int _surrenderPercent;
+      private int _minimumShooters = 5;
+      private bool _hoaOnly = false;
 
       public string DataFolder { get => _dataFolder; set => _dataFolder = value; }
 
@@ -22,12 +24,18 @@ namespace MatchTool
 
       public int SurrenderPercent { get => _surrenderPercent; set => _surrenderPercent = value; }
 
+      public int MinimumShooters { get => _minimumShooters; set => _minimumShooters = value; }
+
+      public bool HOAOnly { get => _hoaOnly; set => _hoaOnly = value; }
+
       public MatchOptions(AppOptions options)
       {
          _dataFolder = options.DataFolder;
          _topPercentToPay = options.TopPercentToPay;
          _prizeMoney = options.PrizeMoney;
          _surrenderPercent = options.SurrenderPercent;
+         _minimumShooters = options.MinimumShooters;
+         _hoaOnly = options.HOAOnly;
       }
 
       public MatchOptions(string dataFolder, int topPercentToPay, double prizeMoney, int surrenderPercent)

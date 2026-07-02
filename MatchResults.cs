@@ -83,7 +83,7 @@ namespace MatchTool
          {
             HtmlNodeCollection cols = resultsRows[i].SelectNodes(".//td");
 
-            if(classification == Classifications.GM)
+            if(classification == Classifications.GM || classification == Classifications.HOA)
             {
                winners.Add(cols[1].InnerText);
             }

@@ -1,170 +1,78 @@
-=========================================================
-Match Name:	2025 Carolina Classic sponsored by The Blue Bullets - 2025-09-12
-Total Shooters:	362
-Prize Money:	$5000.00
-Surrender %:	75%
-Top % to pay:	10%
-=========================================================
+==================================================================================================================
+Match Name:			2025 Carolina Classic sponsored by The Blue Bullets - 2025-09-12
+Total Shooters:			364
+Prize Money:			$5000.00
+Surrender %:			0%
+Top % to pay:			10%
+Required min shooters:	20
+==================================================================================================================
 
 
-Division        Prize Pool      GM              M               A               B               C               D               U               Totals          
+Division        Prize Pool      GM              M               A               B               C               D               U               HOA             Totals          
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CarryOptics     $1919.89        6               28              29              43              20              1               12              139
-     Class Pools                $1505.52        $96.69          $100.14         $148.48         $69.06          $0.00           $0.00           $1919.89
+CarryOptics     $1909.34        6               28              29              43              20              1               12              0               139
+     Class Pools                $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $1909.34        $1909.34
 *********************************************************************************************************************************************************************
 CarryOptics HOA (Paying 14 of 139)
-1	Meisenheimer, Tyler           	$721.30
-2	Wright, Tanner                	$255.02
-3	Hemple, Matthew               	$138.81
-4	McNutt, Maxwell               	$90.16
-5	Barton, Billy                 	$64.52
-6	Kelley, Dylan                 	$49.08
-7	Davidovici, Alexandru         	$38.95
-8	Kerrigan, Colin               	$31.88
-9	Rawlings, Aaron               	$26.71
-10	Godwin, Gage                  	$22.81
-11	George, Cody                  	$19.77
-12	Heinrich, Gerrit              	$17.35
-13	Smart, Don                    	$15.39
-14	Carson, Wes                   	$13.77
+1	Meisenheimer, Tyler           	$914.77
+2	Wright, Tanner                	$323.42
+3	Hemple, Matthew               	$176.05
+4	McNutt, Maxwell               	$114.35
+5	Barton, Billy                 	$81.82
+6	Kelley, Dylan                 	$62.24
+7	Davidovici, Alexandru         	$49.39
+8	Kerrigan, Colin               	$40.43
+9	Rawlings, Aaron               	$33.88
+10	Godwin, Gage                  	$28.93
+11	George, Cody                  	$25.07
+12	Heinrich, Gerrit              	$22.01
+13	Smart, Don                    	$19.52
+14	Carson, Wes                   	$17.46
 
-CarryOptics M (Paying 3 of 28)
-1	Kelley, Dylan                 	$62.54
-2	Davidovici, Alexandru         	$22.11
-3	Kerrigan, Colin               	$12.04
-
-CarryOptics A (Paying 3 of 29)
-1	George, Cody                  	$64.77
-2	Hayes, Chad                   	$22.90
-3	Ring, William                 	$12.47
-
-CarryOptics B (Paying 5 of 43)
-1	Rawlings, Aaron               	$84.34
-2	Hemstock, Alex                	$29.82
-3	Jankuhn, Christian            	$16.23
-4	Hunsucker, Dustin             	$10.54
-5	Cross, Travis                 	$7.54
-
-CarryOptics C (Paying 2 of 20)
-1	Garcia, Adolfo                	$51.02
-2	Gibbs, Anthony                	$18.04
-
-Division        Prize Pool      GM              M               A               B               C               D               U               Totals          
+Division        Prize Pool      GM              M               A               B               C               D               U               HOA             Totals          
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LimitedOptics   $1685.08        4               13              29              31              27              3               15              122
-     Class Pools                $1339.78        $44.89          $100.14         $107.04         $93.23          $0.00           $0.00           $1685.08
+LimitedOptics   $1675.82        4               13              29              31              27              3               15              0               122
+     Class Pools                $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $1675.82        $1675.82
 *********************************************************************************************************************************************************************
 LimitedOptics HOA (Paying 13 of 122)
-1	Jarrett, Todd                 	$647.82
-2	Garten, Dylan                 	$229.04
-3	Menocal, Jonathan             	$124.67
-4	Lee, Ryan                     	$80.98
-5	Kil, Charles                  	$57.94
-6	Paterson, Caleb               	$44.08
-7	Norvelle, Stephen             	$34.98
-8	Haskell, Josh                 	$28.63
-9	held, john                    	$23.99
-10	Parker, Jordan                	$20.49
-11	Crouch, Dan                   	$17.76
-12	Menocal, Jesus “Jessie”       	$15.58
-13	Harms, Drew                   	$13.82
+1	Jarrett, Todd                 	$810.31
+2	Garten, Dylan                 	$286.49
+3	Menocal, Jonathan             	$155.94
+4	Lee, Ryan                     	$101.29
+5	Kil, Charles                  	$72.48
+6	Paterson, Caleb               	$55.13
+7	Norvelle, Stephen             	$43.75
+8	Haskell, Josh                 	$35.81
+9	held, john                    	$30.01
+10	Parker, Jordan                	$25.62
+11	Crouch, Dan                   	$22.21
+12	Menocal, Jesus “Jessie”       	$19.49
+13	Harms, Drew                   	$17.29
 
-LimitedOptics M (Paying 2 of 13)
-1	Garten, Dylan                 	$33.16
-2	Lee, Ryan                     	$11.73
-
-LimitedOptics A (Paying 3 of 29)
-1	Haskell, Josh                 	$64.77
-2	held, john                    	$22.90
-3	Parker, Jordan                	$12.47
-
-LimitedOptics B (Paying 4 of 31)
-1	Farinelli, Loren              	$64.06
-2	Rowe, Brent                   	$22.65
-3	Cast, Kevin                   	$12.33
-4	Jarrett, Carrie               	$8.01
-
-LimitedOptics C (Paying 3 of 27)
-1	Rasmussen Jr., Scott          	$60.31
-2	Williams, Brian               	$21.32
-3	Proskovec, Brooke             	$11.61
-
-Division        Prize Pool      GM              M               A               B               C               D               U               Totals          
+Division        Prize Pool      GM              M               A               B               C               D               U               HOA             Totals          
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Open            $552.49         3               14              9               8               3               1               2               40
-     Class Pools                $445.44         $48.34          $31.08          $27.62          $0.00           $0.00           $0.00           $552.49
+Open            $549.45         3               14              9               8               3               1               2               0               40
+     Class Pools                $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $549.45         $549.45
 *********************************************************************************************************************************************************************
 Open HOA (Paying 4 of 40)
-1	daniels, russell              	$266.57
-2	Lima, Breno                   	$94.25
-3	Walker, Dillion               	$51.30
-4	Lyell, David                  	$33.32
+1	daniels, russell              	$328.81
+2	Lima, Breno                   	$116.25
+3	Walker, Dillion               	$63.28
+4	Lyell, David                  	$41.10
 
-Open M (Paying 2 of 14)
-1	Lima, Breno                   	$35.72
-2	Walker, Dillion               	$12.63
-
-Open A (Paying 1 of 9)
-1	Lee, Trey                     	$31.08
-
-Open B (Paying 1 of 8)
-1	Perez, Joseph                 	$27.62
-
-Division        Prize Pool      GM              M               A               B               C               D               U               Totals          
+Division        Prize Pool      GM              M               A               B               C               D               U               HOA             Totals          
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Limited         $165.75         0               3               1               5               1               1               1               12
-     Class Pools                $148.48         $0.00           $0.00           $17.27          $0.00           $0.00           $0.00           $165.75
-*********************************************************************************************************************************************************************
-Limited HOA (Paying 2 of 12)
-1	Wolff, Matthew                	$109.70
-2	Anderson, Mike                	$38.78
-
-Limited B (Paying 1 of 5)
-1	Burton, David                 	$17.27
-
-Division        Prize Pool      GM              M               A               B               C               D               U               Totals          
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SingleStack     $82.87          0               0               1               2               0               2               1               6
-     Class Pools                $82.87          $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $82.87
-*********************************************************************************************************************************************************************
-SingleStack HOA (Paying 1 of 6)
-1	Royer, John                   	$82.87
-
-Division        Prize Pool      GM              M               A               B               C               D               U               Totals          
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-PCC             $566.30         5               11              12              9               1               1               2               41
-     Class Pools                $455.80         $37.98          $41.44          $31.08          $0.00           $0.00           $0.00           $566.30
+PCC             $563.19         5               11              12              9               1               1               2               0               41
+     Class Pools                $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $563.19         $563.19
 *********************************************************************************************************************************************************************
 PCC HOA (Paying 5 of 41)
-1	Barrett, Chris                	$258.91
-2	Varteressyan, Beglar          	$91.54
-3	Starnes, Ike                  	$49.83
-4	Clark, Jason                  	$32.36
-5	Robinson, Greg                	$23.16
-
-PCC M (Paying 2 of 11)
-1	Varteressyan, Beglar          	$28.06
-2	Sharrett, Mike                	$9.92
-
-PCC A (Paying 2 of 12)
-1	Knapp, Sam                    	$30.61
-2	Simpson, Matthew              	$10.82
-
-PCC B (Paying 1 of 9)
-1	Roper, Travis                 	$31.08
-
-Division        Prize Pool      GM              M               A               B               C               D               U               Totals          
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Production      $27.62          0               0               1               0               0               0               1               2
-     Class Pools                $27.62          $0.00           $0.00           $0.00           $0.00           $0.00           $0.00           $27.62
-*********************************************************************************************************************************************************************
-Production HOA (Paying 1 of 2)
-1	White, Tyler                  	$27.62
+1	Barrett, Chris                	$319.91
+2	Varteressyan, Beglar          	$113.11
+3	Starnes, Ike                  	$61.57
+4	Clark, Jason                  	$39.99
+5	Robinson, Greg                	$28.61
 

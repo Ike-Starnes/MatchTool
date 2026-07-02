@@ -29,47 +29,57 @@ namespace MatchTool
          return ret;
       }
 
-      public PrizePool(double totalMoney, int surrender, MatchResults results)
+      public PrizePool(double poolMoney, MatchResults results, MatchOptions options)
       {
-         _total = totalMoney;
-         _surrender = surrender;
+         _total = poolMoney;
+         _surrender = options.SurrenderPercent;
          _results = results;
 
          _pools = new List<DivClassPool>();
 
-         DivClassPool? gmPool = null;
-
-         double classMoneySum = 0.0;
-         int classSum = 0;
-
-         foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
+         if (!options.HOAOnly)
          {
-            DivClassPool pool = new DivClassPool();
-            Pools.Add(pool);
-            pool.Division = results.Division;
-            pool.Classification = classification;
-            if (pool.Classification == Classifications.GM)
-               gmPool = pool;
-            pool.Count = _results.GetClassificationCount(classification);
+            DivClassPool? gmPool = null;
+            double classMoneySum = 0.0;
+            int classSum = 0;
+            foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
+            {
+               DivClassPool classPool = new DivClassPool();
+               Pools.Add(classPool);
+               classPool.Division = results.Division;
+               classPool.Classification = classification;
+               if (classPool.Classification == Classifications.GM)
+                  gmPool = classPool;
+               classPool.Count = _results.GetClassificationCount(classification);
 
-            if ((pool.Classification == Classifications.GM) || (pool.Classification == Classifications.U) || (pool.Count < 5))
-            {
-               pool.PrizeMoney = 0.0;
-            }
-            else
-            {
-               if (pool.Classification != Classifications.GM)
+               if ((classPool.Classification == Classifications.GM) || (classPool.Classification == Classifications.U) || (classPool.Count < 5))
                {
-                  pool.PrizeMoney = _total * ((double)pool.Count / (double)_results.TotalShooters); // without accounting for surrender amount
-                  double surrenderAmount = pool.PrizeMoney * ((double)_surrender/100.0);
-                  pool.PrizeMoney -= surrenderAmount;
+                  classPool.PrizeMoney = 0.0;
                }
+               else
+               {
+                  if (classPool.Classification != Classifications.GM)
+                  {
+                     classPool.PrizeMoney = _total * ((double)classPool.Count / (double)_results.TotalShooters); // without accounting for surrender amount
+                     double surrenderAmount = classPool.PrizeMoney * ((double)_surrender / 100.0);
+                     classPool.PrizeMoney -= surrenderAmount;
+                  }
+               }
+               classMoneySum += classPool.PrizeMoney;
             }
-            classMoneySum += pool.PrizeMoney;
-         }
 
-         gmPool.PrizeMoney = totalMoney - classMoneySum;
-         gmPool.Count = results.TotalShooters - classSum;
+            gmPool.PrizeMoney = poolMoney - classMoneySum;
+            gmPool.Count = results.TotalShooters - classSum;
+         }
+         else
+         {
+            DivClassPool hoaPool = new DivClassPool();
+            Pools.Add(hoaPool);
+            hoaPool.Division = results.Division;
+            hoaPool.Classification = Classifications.HOA;
+            hoaPool.Count = _results.TotalShooters;
+            hoaPool.PrizeMoney = poolMoney;
+         }
       }
 
       public override string ToString()
