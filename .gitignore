@@ -26,6 +26,8 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+report.txt
+
 # .NET Core
 project.lock.json
 project.fragment.lock.json
