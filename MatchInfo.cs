@@ -72,7 +72,7 @@ namespace MatchTool
 
       public void GetResults()
       {
-         // To get the files, go to Practiscore.com, find the match results, then scroll down to "Old style results"
+         // To get the input HTML files, go to Practiscore.com, find the match results, then scroll down to "Old style results"
          // From that page, save as HTML all the overall results pages "Combined", "Carry Optics", ...
          // Ex:
          // https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-combined

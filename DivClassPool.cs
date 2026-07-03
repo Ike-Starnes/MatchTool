@@ -12,6 +12,13 @@ namespace MatchTool
       public Classifications Classification;
       public int Count;
       public double PrizeMoney;
+      public MatchResults Results;
+
+      public DivClassPool(MatchResults results)
+      {
+         if (results == null) throw new ArgumentNullException(nameof(results));
+         Results = results;
+      }
 
       public List<double> GenerateSmoothPayouts(int shooterCount, int topPercentToPay = 10)
       {
@@ -41,35 +48,5 @@ namespace MatchTool
 
          return payouts;
       }
-
-      //private List<double> GeneratePayoutPercentages(int totalWinners, double exponent = 1.5)
-      //{
-      //   List<double> percentages = new List<double>();
-
-      //   for (int rank = 1; rank <= totalWinners; rank++)
-      //   {
-      //      // Higher ranks get more using a power law: 1 / rank^exponent
-      //      percentages.Add(1 / Math.Pow(rank, exponent));
-      //   }
-
-      //   // Normalize so that sum of percentages = 1 (100% of payout pool)
-      //   double sum = percentages.Sum();
-      //   for (int i = 0; i < percentages.Count; i++)
-      //   {
-      //      percentages[i] /= sum;
-      //   }
-
-      //   return percentages;
-      //}
-
-      //// Method to calculate actual payouts based on total prize pool
-      //public List<double> CalculatePayouts(int topPercentToPay = 10)
-      //{
-      //   int winners = (int)Math.Ceiling(this.Count * ((double)topPercentToPay / 100.0));
-      //   var payoutPercentages = GeneratePayoutPercentages(winners);
-
-      //   List<double> payouts = payoutPercentages.Select(p => Math.Round(p * this.PrizeMoney, 2)).ToList();
-      //   return payouts;
-      //}
    }
 }

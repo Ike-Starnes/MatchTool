@@ -10,10 +10,9 @@ namespace MatchTool
    {
       private double _total;
       public double Total { get => _total; }
+      public MatchResults Results { get; set; }
 
       private int _surrender;
-
-      private MatchResults _results;
 
       private List<DivClassPool> _pools;
       internal List<DivClassPool> Pools { get => _pools; }
@@ -33,7 +32,7 @@ namespace MatchTool
       {
          _total = poolMoney;
          _surrender = options.SurrenderPercent;
-         _results = results;
+         Results = results;
 
          _pools = new List<DivClassPool>();
 
@@ -44,13 +43,13 @@ namespace MatchTool
             int classSum = 0;
             foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
             {
-               DivClassPool classPool = new DivClassPool();
+               DivClassPool classPool = new DivClassPool(results);
                Pools.Add(classPool);
                classPool.Division = results.Division;
                classPool.Classification = classification;
                if (classPool.Classification == Classifications.GM)
                   gmPool = classPool;
-               classPool.Count = _results.GetClassificationCount(classification);
+               classPool.Count = Results.GetClassificationCount(classification);
 
                if ((classPool.Classification == Classifications.GM) || (classPool.Classification == Classifications.U) || (classPool.Count < 5))
                {
@@ -60,7 +59,7 @@ namespace MatchTool
                {
                   if (classPool.Classification != Classifications.GM)
                   {
-                     classPool.PrizeMoney = _total * ((double)classPool.Count / (double)_results.TotalShooters); // without accounting for surrender amount
+                     classPool.PrizeMoney = _total * ((double)classPool.Count / (double)Results.TotalShooters); // without accounting for surrender amount
                      double surrenderAmount = classPool.PrizeMoney * ((double)_surrender / 100.0);
                      classPool.PrizeMoney -= surrenderAmount;
                   }
@@ -73,11 +72,11 @@ namespace MatchTool
          }
          else
          {
-            DivClassPool hoaPool = new DivClassPool();
+            DivClassPool hoaPool = new DivClassPool(results);
             Pools.Add(hoaPool);
             hoaPool.Division = results.Division;
             hoaPool.Classification = Classifications.HOA;
-            hoaPool.Count = _results.TotalShooters;
+            hoaPool.Count = Results.TotalShooters;
             hoaPool.PrizeMoney = poolMoney;
          }
       }
@@ -87,15 +86,15 @@ namespace MatchTool
          string ret = string.Empty;
 
          // line #1
-         string division = _results.Division.ToString().PadRight(16);
+         string division = Results.Division.ToString().PadRight(16);
          ret += division;
          ret += $"${_total:F2}".PadRight(16);
 
          foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
          {
-            ret += $"{_results.GetClassificationCount(classification)}".PadRight(16);
+            ret += $"{Results.GetClassificationCount(classification)}".PadRight(16);
          }
-         ret += $"{_results.TotalShooters}{Environment.NewLine}";
+         ret += $"{Results.TotalShooters}{Environment.NewLine}";
 
          // line #2
          ret += "Class Pools".PadLeft(16).PadRight(32);
