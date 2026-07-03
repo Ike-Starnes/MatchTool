@@ -2,7 +2,7 @@
   "profiles": {
     "MatchTool": {
       "commandName": "Project",
-      "commandLineArgs": "-d D:\\Projects\\MatchTool\\Data -p 5000.00 -s 75 -r D:\\Projects\\MatchTool\\Data\\report.txt -m 10 -h"
+      "commandLineArgs": "-d D:\\Projects\\MatchTool\\Data -p 5000.00 -s 75 -r D:\\Projects\\MatchTool\\Data\\report.txt -m 10 -h -w"
     }
   }
 }

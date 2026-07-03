@@ -92,7 +92,7 @@ namespace MatchTool
          // Report results for each division (and class within each division)
          foreach (MatchResults results in _matchInfo.Results)
          {
-            ReportDivisionResults(results);
+            ReportDivisionResults(results, _matchInfo.Options.WSOPStyle);
          }
 
          if (_mode == ReportOutputMode.Html)
@@ -195,9 +195,14 @@ namespace MatchTool
       }
 
 
-      private void ReportClassResults(DivClassPool divClassPool)
+      private void ReportClassResults(DivClassPool divClassPool, bool wsopStyle)
       {
-         List<double> payouts = divClassPool.GenerateSmoothPayouts(divClassPool.Count, _matchInfo.Options.TopPercentToPay);
+         List<double> payouts;
+         if (wsopStyle)
+            payouts = divClassPool.GenerateWSOPStylePayouts(divClassPool.Count, _matchInfo.Options.TopPercentToPay);
+         else
+            payouts = divClassPool.GenerateSmoothPayouts(divClassPool.Count, _matchInfo.Options.TopPercentToPay);
+
          List<string> winners = divClassPool.Results.GetWinners(divClassPool.Classification, divClassPool.Count);
 
          if (divClassPool.PrizeMoney > 0.0)
@@ -207,7 +212,7 @@ namespace MatchTool
          }
       }
 
-      private void ReportDivisionResults(MatchResults results)
+      private void ReportDivisionResults(MatchResults results, bool wsopStyle)
       {
          ReportDivisionHeader(results);
          PrizePool prizePool = ReportDivisionPrizePool(results);
@@ -215,7 +220,7 @@ namespace MatchTool
          // Report results for each class within this division
          foreach (DivClassPool divClassPool in prizePool.Pools)
          {
-            ReportClassResults(divClassPool);
+            ReportClassResults(divClassPool, wsopStyle);
          }
       }
 

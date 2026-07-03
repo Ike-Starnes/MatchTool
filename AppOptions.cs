@@ -12,6 +12,7 @@ namespace MatchTool
       private int _minimumShooters;
       private bool _hoaOnly;
       private bool _htmlOutput;
+      private bool _wsopStyle;
 
       [Option('d', "datafolder", Required = true, HelpText = "Data folder.")]
       public string DataFolder { get => _dataFolder; set => _dataFolder = value; }
@@ -36,5 +37,8 @@ namespace MatchTool
 
       [Option('l', "htmloutput", Default = true, Required = false, HelpText = "Output as HTML page.")]
       public bool HTMLOutput { get => _htmlOutput; set => _htmlOutput = value; }
+
+      [Option('w', "wsopStyle", Default = false, Required = false, HelpText = "Use WSOP style payouts.")]
+      public bool WSOPStyle { get => _wsopStyle; set => _wsopStyle = value; }
    }
 }

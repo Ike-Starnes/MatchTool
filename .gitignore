@@ -28,6 +28,7 @@ bld/
 
 report.txt
 report.html
+report.pdf
 
 # .NET Core
 project.lock.json

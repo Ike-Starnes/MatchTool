@@ -9,6 +9,7 @@
       private int _minimumShooters = 5;
       private bool _hoaOnly = false;
       private bool _htmlOutput = false;
+      private bool _wsopStyle = true;
 
       public string DataFolder { get => _dataFolder; set => _dataFolder = value; }
 
@@ -24,6 +25,8 @@
 
       public bool HTMLOutput { get => _htmlOutput; set => _htmlOutput = value; }
 
+      public bool WSOPStyle { get => _wsopStyle; set => _wsopStyle = value; }
+
       public MatchOptions(AppOptions options)
       {
          _dataFolder = options.DataFolder;
@@ -33,6 +36,7 @@
          _minimumShooters = options.MinimumShooters;
          _hoaOnly = options.HOAOnly;
          _htmlOutput = options.HTMLOutput;
+         _wsopStyle = options.WSOPStyle;
       }
    }
 }
