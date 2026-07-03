@@ -76,7 +76,7 @@ namespace MatchTool
          ReportThickHorizontalRule();
          Report($"Match Name:\t\t{_matchInfo.Name}");
          Report($"Total Shooters:\t\t{_matchInfo.TotalShooters}");
-         Report($"Prize Money:\t\t${_matchInfo.Options.PrizeMoney:F2}");
+         Report($"Prize Money:\t\t💲{_matchInfo.Options.PrizeMoney:F2}");
          Report($"Surrender %:\t\t{_matchInfo.Options.SurrenderPercent}%");
          Report($"Top % to pay:\t\t{_matchInfo.Options.TopPercentToPay}%");
          Report($"Required min shooters:\t{_matchInfo.Options.MinimumShooters}");
@@ -144,10 +144,10 @@ namespace MatchTool
          {
             _html.AppendLine("<tr>");
             _html.AppendLine($"<td>{results.Division}</td>");
-            _html.AppendLine($"<td>${poolMoney:F2}</td>");
+            _html.AppendLine($"<td>💲{poolMoney:F2}</td>");
 
             foreach (var p in prizePool.Pools)
-               _html.AppendLine($"<td>${p.PrizeMoney:F2}</td>");
+               _html.AppendLine($"<td>💲{p.PrizeMoney:F2}</td>");
 
             _html.AppendLine($"<td>{results.TotalShooters}</td>");
             _html.AppendLine("</tr>");
@@ -179,8 +179,7 @@ namespace MatchTool
 
             for (int i = 0; i < payouts.Count; i++)
             {
-               _html.AppendLine(
-                   $"<tr><td>{i + 1}</td><td>{System.Net.WebUtility.HtmlEncode(winners[i])}</td><td>${payouts[i]:F2}</td></tr>");
+               _html.AppendLine($"<tr><td>{i + 1}</td><td>{System.Net.WebUtility.HtmlEncode(winners[i])}</td><td>💲{payouts[i]:F2}</td></tr>");
             }
 
             _html.AppendLine("</table><br>");
@@ -188,7 +187,7 @@ namespace MatchTool
          else
          {
             for (int i = 0; i < payouts.Count; i++)
-               Report($"{i + 1}\t{winners[i],-30}\t${payouts[i]:F2}");
+               Report($"{i + 1}\t{winners[i],-30}\t💲{payouts[i]:F2}");
 
             Report(Environment.NewLine);
          }

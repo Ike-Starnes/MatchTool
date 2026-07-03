@@ -82,7 +82,7 @@
          // line #1
          string division = Results.Division.ToString().PadRight(16);
          ret += division;
-         ret += $"${_total:F2}".PadRight(16);
+         ret += $"💲{_total:F2}".PadRight(16);
 
          foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
          {
@@ -94,7 +94,7 @@
          ret += "Class Pools".PadLeft(16).PadRight(32);
          foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
          {
-            string classPrize = $"${GetClassificationPrize(classification):F2}".PadRight(16);
+            string classPrize = $"💲{GetClassificationPrize(classification):F2}".PadRight(16);
             ret += classPrize;
          }
 
@@ -104,7 +104,7 @@
             totalPrize += pool.PrizeMoney;
          }
 
-         ret += $"${totalPrize:F2}";
+         ret += $"💲{totalPrize:F2}";
 
          return ret;
       }
