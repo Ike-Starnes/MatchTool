@@ -49,7 +49,7 @@ namespace MatchTool
          matchInfo.GetResults();
 
          // Calculate and report the match prize results
-         MatchReporter reporter = new MatchReporter(matchInfo, appOptions.ReportFile);
+         MatchReporter reporter = new MatchReporter(matchInfo, appOptions);
          reporter.ReportResults();
 
          // Display the results file

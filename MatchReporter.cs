@@ -1,40 +1,75 @@
 ﻿using System.Diagnostics;
+using System.Text;
 
 namespace MatchTool
 {
+   public enum ReportOutputMode
+   {
+      Text,
+      Html
+   }
+
+
    internal class MatchReporter
    {
+      private readonly ReportOutputMode _mode;
+      private readonly StringBuilder _html = new StringBuilder();
+
       private string _reportFile = string.Empty;
       public string ReportFile { get => _reportFile; }
 
       private MatchInfo _matchInfo;
 
-      public MatchReporter(MatchInfo matchInfo, string reportFile)
+      public MatchReporter(MatchInfo matchInfo, AppOptions appOptions)
       {
          _matchInfo = matchInfo;
-         _reportFile = reportFile;
+         _mode = appOptions.HTMLOutput ? ReportOutputMode.Html : ReportOutputMode.Text;
+         _reportFile = appOptions.ReportFile;
+         if (_mode == ReportOutputMode.Html) { _reportFile = _reportFile.ToLower().Replace(".txt", ".html"); }
+
          if (File.Exists(_reportFile)) { File.Delete(_reportFile); }
+
+         if (_mode == ReportOutputMode.Html)
+         {
+            _html.AppendLine("<html><head><style>");
+            _html.AppendLine("body { font-family: Consolas, monospace; }");
+            _html.AppendLine("table { border-collapse: collapse; width: 100%; }");
+            _html.AppendLine("th, td { border: 1px solid #444; padding: 6px; }");
+            _html.AppendLine("h2 { margin-top: 40px; }");
+            _html.AppendLine("</style></head><body>");
+         }
       }
 
       private void Report(string message)
       {
          Console.WriteLine(message);
-         if (!String.IsNullOrEmpty(_reportFile))
+
+         if (_mode == ReportOutputMode.Text)
          {
-            File.AppendAllText(_reportFile, message);
-            File.AppendAllText(_reportFile, Environment.NewLine);
+            File.AppendAllText(_reportFile, message + Environment.NewLine);
+         }
+         else
+         {
+            _html.AppendLine($"<div>{System.Net.WebUtility.HtmlEncode(message)}</div>");
          }
       }
 
       private void ReportThickHorizontalRule()
       {
-         Report($"==================================================================================================================");
+         if (_mode == ReportOutputMode.Html)
+            _html.AppendLine("<hr style='border: 3px solid black;'>");
+         else
+            Report("==================================================================================================================");
       }
 
       private void ReportThinHorizontalRule()
       {
-         Report($"------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+         if (_mode == ReportOutputMode.Html)
+            _html.AppendLine("<hr style='border: 1px solid #999;'>");
+         else
+            Report("------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
       }
+
 
       private void ReportMainHeader()
       {
@@ -59,31 +94,66 @@ namespace MatchTool
          {
             ReportDivisionResults(results);
          }
-      }
 
+         if (_mode == ReportOutputMode.Html)
+         {
+            _html.AppendLine("</body></html>");
+            File.WriteAllText(_reportFile, _html.ToString());
+         }
+      }
 
       private void ReportDivisionHeader(MatchResults results)
       {
-         // Division header
-         string report = "Division".PadRight(16);
-         report += "Prize Pool".PadRight(16);
-         foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
-            report += classification.ToString().PadRight(16);
-         report += "Totals".PadRight(16);
-         Report(report);
-         ReportThinHorizontalRule();
+         if (_mode == ReportOutputMode.Html)
+         {
+            _html.AppendLine("<h2>Division Results</h2>");
+            _html.AppendLine("<table><tr>");
+            _html.AppendLine("<th>Division</th><th>Prize Pool</th>");
+
+            foreach (Classifications c in Enum.GetValues(typeof(Classifications)))
+               _html.AppendLine($"<th>{c}</th>");
+
+            _html.AppendLine("<th>Totals</th></tr>");
+         }
+         else
+         {
+            string report = "Division".PadRight(16);
+            report += "Prize Pool".PadRight(16);
+            foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
+               report += classification.ToString().PadRight(16);
+            report += "Totals".PadRight(16);
+            Report(report);
+            ReportThinHorizontalRule();
+         }
       }
 
       private PrizePool ReportDivisionPrizePool(MatchResults results)
       {
-         // Get the prize pool for this division (and classes within)
          double percentage = (double)results.TotalShooters / (double)_matchInfo.TotalShooters;
          double poolMoney = _matchInfo.Options.PrizeMoney * percentage;
          PrizePool prizePool = new PrizePool(poolMoney, results, _matchInfo.Options);
-         Report(prizePool.ToString());
-         ReportThinHorizontalRule();
+
+         if (_mode == ReportOutputMode.Html)
+         {
+            _html.AppendLine("<tr>");
+            _html.AppendLine($"<td>{results.Division}</td>");
+            _html.AppendLine($"<td>${poolMoney:F2}</td>");
+
+            foreach (var p in prizePool.Pools)
+               _html.AppendLine($"<td>${p.PrizeMoney:F2}</td>");
+
+            _html.AppendLine($"<td>{results.TotalShooters}</td>");
+            _html.AppendLine("</tr>");
+         }
+         else
+         {
+            Report(prizePool.ToString());
+            ReportThinHorizontalRule();
+         }
+
          return prizePool;
       }
+
 
       private void ReportClassHeader(DivClassPool divClassPool, List<double> payouts)
       {
@@ -95,12 +165,28 @@ namespace MatchTool
 
       private void ReportWinners(List<string> winners, List<double> payouts)
       {
-         for (int i = 0; i < payouts.Count; i++)
+         if (_mode == ReportOutputMode.Html)
          {
-            Report($"{i + 1}\t{winners[i],-30}\t${payouts[i]:F2}");
+            _html.AppendLine("<table>");
+            _html.AppendLine("<tr><th>Place</th><th>Name</th><th>Payout</th></tr>");
+
+            for (int i = 0; i < payouts.Count; i++)
+            {
+               _html.AppendLine(
+                   $"<tr><td>{i + 1}</td><td>{System.Net.WebUtility.HtmlEncode(winners[i])}</td><td>${payouts[i]:F2}</td></tr>");
+            }
+
+            _html.AppendLine("</table><br>");
          }
-         Report(Environment.NewLine);
+         else
+         {
+            for (int i = 0; i < payouts.Count; i++)
+               Report($"{i + 1}\t{winners[i],-30}\t${payouts[i]:F2}");
+
+            Report(Environment.NewLine);
+         }
       }
+
 
       private void ReportClassResults(DivClassPool divClassPool)
       {
@@ -128,7 +214,13 @@ namespace MatchTool
 
       public void DisplayResults()
       {
-         if (File.Exists(_reportFile)) { Process.Start("notepad.exe", _reportFile); }
+         if (File.Exists(_reportFile))
+         {
+            if (_mode == ReportOutputMode.Html)
+               Process.Start(new ProcessStartInfo(_reportFile) { UseShellExecute = true });
+            else
+               Process.Start("notepad.exe", _reportFile);
+         }
       }
    }
 }

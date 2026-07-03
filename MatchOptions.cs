@@ -8,6 +8,7 @@
       private int _surrenderPercent;
       private int _minimumShooters = 5;
       private bool _hoaOnly = false;
+      private bool _htmlOutput = false;
 
       public string DataFolder { get => _dataFolder; set => _dataFolder = value; }
 
@@ -21,6 +22,8 @@
 
       public bool HOAOnly { get => _hoaOnly; set => _hoaOnly = value; }
 
+      public bool HTMLOutput { get => _htmlOutput; set => _htmlOutput = value; }
+
       public MatchOptions(AppOptions options)
       {
          _dataFolder = options.DataFolder;
@@ -29,6 +32,7 @@
          _surrenderPercent = options.SurrenderPercent;
          _minimumShooters = options.MinimumShooters;
          _hoaOnly = options.HOAOnly;
+         _htmlOutput = options.HTMLOutput;
       }
    }
 }
