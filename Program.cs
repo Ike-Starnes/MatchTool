@@ -24,8 +24,8 @@ namespace MatchTool
 
       private static void Usage()
       {
-         //Console.WriteLine("For command line help:");
-         //Console.WriteLine("   MatchTool.exe --help");
+         Console.WriteLine("For command line help:");
+         Console.WriteLine("   MatchTool.exe --help");
       }
 
       static int Main(string[] args)
@@ -34,6 +34,11 @@ namespace MatchTool
          ParserResult<AppOptions> parseResult = Parser.Default.ParseArguments<AppOptions>(args)
            .WithParsed(RunOptions)
            .WithNotParsed(HandleParseError);
+
+#if DEBUG
+         // Display command line
+         Console.WriteLine(Environment.CommandLine.Replace(".dll", ".exe"));
+#endif // #if DEBUG
 
          // Get app options from command line
          if (parseResult.Errors.Any()) { return 1; }
