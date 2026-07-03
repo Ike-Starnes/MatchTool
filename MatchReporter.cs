@@ -110,8 +110,15 @@ namespace MatchTool
             _html.AppendLine("<table><tr>");
             _html.AppendLine("<th>Division</th><th>Prize Pool</th>");
 
-            foreach (Classifications c in Enum.GetValues(typeof(Classifications)))
-               _html.AppendLine($"<th>{c}</th>");
+            if (_matchInfo.Options.HOAOnly)
+            {
+               _html.AppendLine($"<th>{Classifications.HOA.ToString()}</th>");
+            }
+            else
+            {
+               foreach (Classifications c in Enum.GetValues(typeof(Classifications)))
+                  _html.AppendLine($"<th>{c}</th>");
+            }
 
             _html.AppendLine("<th>Totals</th></tr>");
          }
