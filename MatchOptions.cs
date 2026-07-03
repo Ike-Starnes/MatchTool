@@ -37,13 +37,5 @@ namespace MatchTool
          _minimumShooters = options.MinimumShooters;
          _hoaOnly = options.HOAOnly;
       }
-
-      public MatchOptions(string dataFolder, int topPercentToPay, double prizeMoney, int surrenderPercent)
-      {
-         _dataFolder = dataFolder;
-         _topPercentToPay = topPercentToPay;
-         _prizeMoney = prizeMoney;
-         _surrenderPercent = surrenderPercent;
-      }
    }
 }

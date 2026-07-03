@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace MatchTool
 {
-   internal class Reporter
+   internal class MatchReporter
    {
       private string _reportFile = string.Empty;
       public string ReportFile { get => _reportFile; }
 
-      public Reporter()
-      {
-      }
-
-      public Reporter(string reportFile)
+      public MatchReporter(string reportFile)
       {
          _reportFile = reportFile;
          if (File.Exists(_reportFile)) { File.Delete(_reportFile); }

@@ -34,16 +34,26 @@ namespace MatchTool
 
       static int Main(string[] args)
       {
+         // Parse command line
          ParserResult<AppOptions> parseResult = Parser.Default.ParseArguments<AppOptions>(args)
            .WithParsed(RunOptions)
            .WithNotParsed(HandleParseError);
 
+         // Get app options from command line
          if (parseResult.Errors.Any()) { return 1; }
          AppOptions appOptions = parseResult.Value;
+
+         // Construct match options class from app options
          MatchOptions matchOptions = new MatchOptions(appOptions);
 
+         // Get match info
          MatchInfo matchInfo = new MatchInfo(matchOptions);
-         Reporter reporter = new Reporter(appOptions.ReportFile);
+
+         // Get match results
+         matchInfo.GetResults();
+
+         // Report the match prize results
+         MatchReporter reporter = new MatchReporter(appOptions.ReportFile);
 
          reporter.Report($"==================================================================================================================");
          reporter.Report($"Match Name:\t\t{matchInfo.Name}");
@@ -63,10 +73,10 @@ namespace MatchTool
             foreach (Classifications classification in Enum.GetValues(typeof(Classifications)))
                report += classification.ToString().PadRight(16);
             report += "Totals".PadRight(16);
-            report += Environment.NewLine;
+            //report += Environment.NewLine;
             reporter.Report(report);
 
-            reporter.Report($"---------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            reporter.Report($"------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
             double percentage = (double)results.TotalShooters / (double)matchInfo.TotalShooters;
             double poolMoney = matchInfo.Options.PrizeMoney * percentage;
@@ -74,7 +84,7 @@ namespace MatchTool
             PrizePool prizePool = new PrizePool(poolMoney, results, matchOptions);
             reporter.Report(prizePool.ToString());
 
-            reporter.Report($"*********************************************************************************************************************************************************************");
+            reporter.Report($"************************************************************************************************************************************************************************");
 
             foreach (DivClassPool divClassPool in prizePool.Pools)
             {

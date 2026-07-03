@@ -53,8 +53,25 @@ namespace MatchTool
 
       public MatchInfo(MatchOptions options)
       {
-         _name = String.Empty;
+         if(options == null) throw new ArgumentNullException(nameof(options));
 
+         _name = String.Empty;
+         _options = options;
+         _results = new List<MatchResults>();
+      }
+
+      private void GetMatchInfo(String matchFile)
+      {
+         HtmlDocument doc = new HtmlDocument();
+         string html = File.ReadAllText(matchFile);
+         doc.LoadHtml(html);
+
+         HtmlNode matchNode = doc.DocumentNode.SelectSingleNode("//h3");
+         _name = matchNode.InnerText.Trim();
+      }
+
+      public void GetResults()
+      {
          // To get the files, go to Practiscore.com, find the match results, then scroll down to "Old style results"
          // From that page, save as HTML all the overall results pages "Combined", "Carry Optics", ...
          // Ex:
@@ -63,34 +80,26 @@ namespace MatchTool
          // https://practiscore.com/results/html/e8bcf627-e274-4a86-b67a-860f94430c49?page=overall-limited
          // ...
 
-         if (!Directory.Exists(options.DataFolder)) throw new DirectoryNotFoundException(options.DataFolder);
-         _options = options;
-
-         string matchFile = Path.Combine(options.DataFolder, $"Main.html");
-         if (!File.Exists(matchFile)) throw new FileNotFoundException(matchFile);
-
-         HtmlDocument doc = new HtmlDocument();
-         string html = File.ReadAllText(matchFile);
-         doc.LoadHtml(html);
-
-         HtmlNode matchNode = doc.DocumentNode.SelectSingleNode("//h3");
-         _name = matchNode.InnerText.Trim();
-
+         _results.Clear();
          _totalShooters = 0;
 
-         _results = new List<MatchResults>();
-         GetResults();
+         if (!Directory.Exists(_options.DataFolder)) throw new DirectoryNotFoundException(_options.DataFolder);
+
+         string matchFile = Path.Combine(_options.DataFolder, $"Main.html");
+         if (!File.Exists(matchFile)) throw new FileNotFoundException(matchFile);
+
+         GetMatchInfo(matchFile);
+
+         GetAllMatchResults();
       }
 
-      private void GetResults()
+      private void GetAllMatchResults()
       {
-         _results.Clear();
-
          foreach (Divisions division in Enum.GetValues(typeof(Divisions)))
          {
             try
             {
-               MatchResults matchResults = GetResults(division);
+               MatchResults matchResults = GetDivisionResults(division);
                if (matchResults.TotalShooters >= _options.MinimumShooters)
                   _results.Add(matchResults);
                else
@@ -101,7 +110,8 @@ namespace MatchTool
             catch (FileNotFoundException /*e*/) { System.Diagnostics.Debug.WriteLine($"No results file for division: {division}"); }
          }
       }
-      private MatchResults GetResults(Divisions division)
+
+      private MatchResults GetDivisionResults(Divisions division)
       {
          string resultsFile = Path.Combine(Options.DataFolder, $"{division}.html");
          if (!File.Exists(resultsFile))
